@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>CBD_PROYECTO</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="mongocsharpdriver" Version="2.10.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.3" />
+  </ItemGroup>
+
+</Project>
