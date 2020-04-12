@@ -20,32 +20,41 @@ namespace CBD_PROYECTO
 
             }
 
-            public void insertarElemento<T>(String colecion, T elemento)
+            public void insertarElemento<T>(String coleccion, T elemento)
             {
-                var collection = db.GetCollection<T>(colecion);
+                var collection = db.GetCollection<T>(coleccion);
                 collection.InsertOne(elemento);
             }
 
-            public List<T> listadoBD<T>(String colecion)
+            public List<T> listadoBD<T>(String coleccion)
             {
-                var collection = db.GetCollection<T>(colecion);
+                var collection = db.GetCollection<T>(coleccion);
                 var data = new BsonDocument();
                 return collection.Find(data).ToList();
             }
 
 
-            public void UpgradeElemento<T>(String colecion, T persona, Guid id)
+            public T mostrarElementoPorId<T>(String coleccion, ObjectId id)
             {
-                var collection = db.GetCollection<T>(colecion);
+                var collection = db.GetCollection<T>(coleccion);
+                var filter = Builders<T>.Filter.Eq("Id", id);
+
+                return collection.Find(filter).First();
+            }
+
+
+            public void editarElemento<T>(String coleccion, T elemento, ObjectId id)
+            {
+                var collection = db.GetCollection<T>(coleccion);
                 var data = new BsonDocument("_id", id);
-                collection.ReplaceOne(data, persona, new ReplaceOptions { IsUpsert = true });
+                collection.ReplaceOne(data, elemento, new ReplaceOptions { IsUpsert = true });
             }
 
 
 
-            public void DeleteElemento<T>(String colecion, Guid id)
+            public void eliminarElemento<T>(String coleccion, ObjectId id)
             {
-                var collection = db.GetCollection<T>(colecion);
+                var collection = db.GetCollection<T>(coleccion);
                 var filter = Builders<T>.Filter.Eq("Id", id);
                 collection.DeleteOne(filter);
             }

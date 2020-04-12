@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace CBD_PROYECTO
 {
     public class Actor
     {
+        [BsonId]
         public ObjectId _id { get; set; }
 
         public string nombre { get; set; }
@@ -36,5 +38,13 @@ namespace CBD_PROYECTO
             this.edad = edad;
             this.valoracion = valoracion;
         }
+
+
+        public string MongoId
+        {
+            get { return _id.ToString(); }
+            set { _id = ObjectId.Parse(value); }
+        }
+
     }
 }

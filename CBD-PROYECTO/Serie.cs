@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace CBD_PROYECTO
 {
     class Serie
-    { 
-         public ObjectId _id { get; set; }
-         public string titulo { get; set; }
+    {
+        [BsonId]
+        public ObjectId _id { get; set; }
 
+        [BsonElement("Titulo")]
+        public string titulo { get; set; }
+
+        [BsonElement("Descripcion")]
         public string descripcion { get; set; }
 
+        [BsonElement("Valoracion")]
         public double valoracion { get; set; }
-
+        
+        [BsonElement("Lanzamiento")]
         public DateTime fechaLanzamiento { get; set; }
 
         public int temporada { get; set; }
@@ -22,7 +29,9 @@ namespace CBD_PROYECTO
 
 
 
-        public Serie() { }
+        public Serie() { 
+        
+        }
         public Serie(string tit, String des, double val, Actor[] actores, string creador, DateTime fechaLanzamiento, int temp )
         {
             this.titulo = tit;
@@ -30,6 +39,13 @@ namespace CBD_PROYECTO
             this.valoracion = val;
             this.fechaLanzamiento = fechaLanzamiento;
             this.temporada = temp;
+        }
+
+
+        public string MongoId
+        {
+            get { return _id.ToString(); }
+            set { _id = ObjectId.Parse(value); }
         }
     }
 }
