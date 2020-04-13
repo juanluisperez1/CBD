@@ -65,6 +65,10 @@ namespace CBD_PROYECTO
 
         }
 
+
+
+        
+
         /// <summary>
         /// Show current page title
         /// </summary>
@@ -182,6 +186,9 @@ namespace CBD_PROYECTO
 
             return actores.ToArray();
         }
+
+
+                   
 
 
         /// <summary>

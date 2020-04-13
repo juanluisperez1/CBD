@@ -108,6 +108,13 @@ namespace CBD_PROYECTO
                                 }
 
 
+                                Console.WriteLine("Introduzca los atores de la serie: (leave empty if no changes");
+
+                                
+                                    serie.actores = Dialogo.añadirActor();
+                                
+
+
 
                                 mongoDB.editarElemento<Serie>(collectionName, serie, serieIdGuid);
                             }
