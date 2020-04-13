@@ -1,6 +1,7 @@
 ﻿using System;
 
 using System;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
@@ -47,32 +48,66 @@ namespace CBD_PROYECTO
                         {
                             var serieId = Dialogo.ShowUpdateSerie();
                             ObjectId serieIdGuid;
+         
                             bool isValidGuid = ObjectId.TryParse(serieId, out serieIdGuid);
+
                             if (isValidGuid)
                             {
                                 var serie = mongoDB.mostrarElementoPorId<Serie>(collectionName, serieIdGuid);
                                 Console.Write($"\n" +
                                     $"Current info\n" +
-                                    $"Name: {serie.titulo} \n" +
-                                    $"Email: {serie.descripcion}");
+                                    $"Título: {serie.titulo} \n" +
+                                    $"Descripción: {serie.descripcion}");
 
                                 Console.WriteLine("\n------------------------------------------\n");
 
-                                Console.WriteLine("Enter new full name (leave empty if no changes");
-                                var fullName = Console.ReadLine();
+                                Console.WriteLine("Introduzca un nuevo título (leave empty if no changes");
+                                var titulo = Console.ReadLine();
 
-                                if (!string.IsNullOrEmpty(fullName) && !string.IsNullOrWhiteSpace(fullName))
+                                if (!string.IsNullOrEmpty(titulo) && !string.IsNullOrWhiteSpace(titulo))
                                 {
-                                    serie.titulo = fullName;
+                                    serie.titulo = titulo;
                                 }
 
-                                Console.WriteLine("Enter new email (leave empty if no changes");
-                                var email = Console.ReadLine();
+                                Console.WriteLine("Introduzca una nueva descripcion (leave empty if no changes");
+                                var description = Console.ReadLine();
 
-                                if (!string.IsNullOrEmpty(email) && !string.IsNullOrWhiteSpace(email))
+                                if (!string.IsNullOrEmpty(description) && !string.IsNullOrWhiteSpace(description))
                                 {
-                                    serie.descripcion = email;
+                                    serie.descripcion = description;
                                 }
+
+                                Console.WriteLine("Introduzca una nueva valoracion (leave empty if no changes");
+                                var valoracion = Console.ReadLine();
+
+                                if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
+                                {
+
+                                    serie.valoracion = Double.Parse(valoracion); 
+                                }
+
+                                Console.WriteLine("Introduzca una nueva fecha de Lanzamiento, según el patrón dd-mm-yyyy: (leave empty if no changes");
+                                var fechaLanzamiento = Console.ReadLine();
+
+                                if (!string.IsNullOrEmpty(fechaLanzamiento) && !string.IsNullOrWhiteSpace(fechaLanzamiento))
+                                {
+
+                                    serie.fechaLanzamiento = DateTime.ParseExact(fechaLanzamiento,
+                                            "dd-MM-yyyy",
+                                            CultureInfo.InvariantCulture);
+                                }
+
+
+                                Console.WriteLine("Introduzca el número de temporadas: (leave empty if no changes");
+                                var temporadas = Console.ReadLine();
+
+                                if (!string.IsNullOrEmpty(temporadas) && !string.IsNullOrWhiteSpace(temporadas))
+                                {
+
+                                    serie.temporada = Convert.ToInt32(Console.ReadLine());
+                                }
+
+
 
                                 mongoDB.editarElemento<Serie>(collectionName, serie, serieIdGuid);
                             }

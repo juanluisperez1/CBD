@@ -37,8 +37,7 @@ namespace CBD_PROYECTO
             public T mostrarElementoPorId<T>(String coleccion, ObjectId id)
             {
                 var collection = db.GetCollection<T>(coleccion);
-                var filter = Builders<T>.Filter.Eq("Id", id);
-
+                var filter = Builders<T>.Filter.Eq("_id", id);
                 return collection.Find(filter).First();
             }
 

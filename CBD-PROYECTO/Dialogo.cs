@@ -129,7 +129,7 @@ namespace CBD_PROYECTO
                                             "dd-MM-yyyy",
                                             CultureInfo.InvariantCulture);
 
-            Console.Write("Introduzaca el número de temporadas: ");
+            Console.Write("Introduzca el número de temporadas: ");
             serie.temporada = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Introduzca los actores de la serie: ");
@@ -211,6 +211,7 @@ namespace CBD_PROYECTO
         {
             ShowHeader("Update Serie");
 
+            
             Console.WriteLine("Enter serie Id: ");
 
             return Console.ReadLine();
