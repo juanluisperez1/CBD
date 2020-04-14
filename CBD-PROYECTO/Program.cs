@@ -108,12 +108,16 @@ namespace CBD_PROYECTO
                                 }
 
 
-                                Console.WriteLine("Introduzca los atores de la serie: (leave empty if no changes");
+                                Console.WriteLine("Introduzca los actores de la serie: (leave empty if no changes), si quiere introducir presine una tecla y enter");
+                                var actor = Console.ReadLine();
 
-                                
+                                if (!string.IsNullOrEmpty(actor) && !string.IsNullOrWhiteSpace(actor))
+                                {
+
+
                                     serie.actores = Dialogo.añadirActor();
-                                
 
+                                }
 
 
                                 mongoDB.editarElemento<Serie>(collectionName, serie, serieIdGuid);
