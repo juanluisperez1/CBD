@@ -8,9 +8,7 @@ namespace CBD_PROYECTO
 {
     public class Actor
     {
-        [BsonId]
-        public ObjectId _id { get; set; }
-
+        
         public string nombre { get; set; }
 
         public string apellidos { get; set; }
@@ -40,11 +38,7 @@ namespace CBD_PROYECTO
         }
 
 
-        public string MongoId
-        {
-            get { return _id.ToString(); }
-            set { _id = ObjectId.Parse(value); }
-        }
+        
 
     }
 }
