@@ -132,29 +132,38 @@ namespace CBD_PROYECTO
             {
                 Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
             }
+                
+                serie.valoracion = d;
 
-         
 
 
-            Console.Write("Introduzca fecha de lanzamiento: ");
+
+            Console.Write("Introduzca fecha de lanzamiento, siguiendo el formato dd/MM/yyyy: ");
             serie.fechaLanzamiento = Console.ReadLine();
             DateTime dt;
             while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
             {
-                Console.WriteLine("Invalid date, please retry");
+                Console.WriteLine("Invalid date, please retry, the format is dd/MM/yyyy");
                 serie.fechaLanzamiento = Console.ReadLine();
             }
 
 
             Console.Write("Introduzca el número de temporadas: ");
+            // int num;
+
+            //  while (!Int32.TryParse(serie.temporada,null,null, System.Globalization.DateTimeStyles.None, out num)){
+
+
             int num;
 
-            while (!Int32.TryParse(serie.temporada,null,null, System.Globalization.DateTimeStyles.None, out num)){
-                
+            while (!Int32.TryParse(Console.ReadLine(), out num))
+            {
                 Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
-               serie.temporada = Convert.ToInt32(Console.ReadLine());
+               
 
             }
+
+            serie.temporada = num;
 
             Console.Write("Introduzca los actores de la serie: ");
             serie.actores=añadirActor();
@@ -202,7 +211,7 @@ namespace CBD_PROYECTO
                             Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
                         }
 
-                       // actor.edad = Convert.ToInt32(Console.ReadLine());
+                        actor.edad = numero;
 
                         Console.Write("Introduzca el lugar de nacimiento: ");
                         actor.lugarNacimiento = Console.ReadLine();

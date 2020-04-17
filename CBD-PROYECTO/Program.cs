@@ -14,7 +14,7 @@ namespace CBD_PROYECTO
         static void Main(string[] args)
         {
             // Establecemos conexion con la base de datos
-            var mongoDB = new MongoConnect("Entrega");
+            var mongoDB = new MongoConnect("Entregaa");
 
             const string collectionName = "Series";
 

@@ -6228,19 +6228,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pepe1\\.nuget\\packages\\": {}
+    "C:\\Users\\Juan Luis Perez\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pepe1\\Source\\Repos\\VersionFinal\\CBD-PROYECTO\\CBD-PROYECTO.csproj",
+      "projectUniqueName": "D:\\CBD\\RepoCBD\\CBD\\CBD-PROYECTO\\CBD-PROYECTO.csproj",
       "projectName": "CBD-PROYECTO",
-      "projectPath": "C:\\Users\\pepe1\\Source\\Repos\\VersionFinal\\CBD-PROYECTO\\CBD-PROYECTO.csproj",
-      "packagesPath": "C:\\Users\\pepe1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pepe1\\Source\\Repos\\VersionFinal\\CBD-PROYECTO\\obj\\",
+      "projectPath": "D:\\CBD\\RepoCBD\\CBD\\CBD-PROYECTO\\CBD-PROYECTO.csproj",
+      "packagesPath": "C:\\Users\\Juan Luis Perez\\.nuget\\packages\\",
+      "outputPath": "D:\\CBD\\RepoCBD\\CBD\\CBD-PROYECTO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pepe1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Juan Luis Perez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6288,7 +6288,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
