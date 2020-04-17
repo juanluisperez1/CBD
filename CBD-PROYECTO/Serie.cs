@@ -21,7 +21,7 @@ namespace CBD_PROYECTO
         public double valoracion { get; set; }
         
         [BsonElement("Lanzamiento")]
-        public DateTime fechaLanzamiento { get; set; }
+        public String fechaLanzamiento { get; set; }
 
         public int temporada { get; set; }
 
@@ -32,7 +32,7 @@ namespace CBD_PROYECTO
         public Serie() { 
         
         }
-        public Serie(string tit, String des, double val, Actor[] actores, string creador, DateTime fechaLanzamiento, int temp )
+        public Serie(string tit, String des, double val, Actor[] actores, string creador, String fechaLanzamiento, int temp )
         {
             this.titulo = tit;
             this.descripcion = des;

@@ -1,6 +1,5 @@
 ﻿using System;
 
-using System;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,26 +86,22 @@ namespace CBD_PROYECTO
                                 }
 
                                 Console.WriteLine("Introduzca una nueva fecha de Lanzamiento, según el patrón dd-mm-yyyy: (leave empty if no changes");
-                                var fechaLanzamiento = Console.ReadLine();
-
-                                if (!string.IsNullOrEmpty(fechaLanzamiento) && !string.IsNullOrWhiteSpace(fechaLanzamiento))
+                                serie.fechaLanzamiento = Console.ReadLine();
+                                DateTime dt;
+                                while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
                                 {
-
-                                    serie.fechaLanzamiento = DateTime.ParseExact(fechaLanzamiento,
-                                            "dd-MM-yyyy",
-                                            CultureInfo.InvariantCulture);
+                                    Console.WriteLine("Invalid date, please retry");
+                                    serie.fechaLanzamiento = Console.ReadLine();
                                 }
 
 
                                 Console.WriteLine("Introduzca el número de temporadas: (leave empty if no changes");
-                                var temporadas = Console.ReadLine();
+                                int numero;
 
-                                if (!string.IsNullOrEmpty(temporadas) && !string.IsNullOrWhiteSpace(temporadas))
+                                while (!Int32.TryParse(Console.ReadLine(), out numero))
                                 {
-
-                                    serie.temporada = Convert.ToInt32(Console.ReadLine());
+                                    Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
                                 }
-
 
                                 Console.WriteLine("Introduzca los actores de la serie: (leave empty if no changes), si quiere introducir presine una tecla y enter");
                                 var actor = Console.ReadLine();

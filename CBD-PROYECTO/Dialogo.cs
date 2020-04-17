@@ -18,16 +18,16 @@ namespace CBD_PROYECTO
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(20, 0);
-            Console.WriteLine("Welcome to a cli app connected with MongoDB");
+            Console.WriteLine("Bienvenido a nuestro trabajo de CBD; una app conectada con MongoDB");
             Console.ResetColor();
             Console.WriteLine();
             Console.Write(
-                "Please enter your choice: \n\n" +
-                "[0] Add new serie. \n" +
-                "[1] Show series list. \n" +
-                "[2] Update serie info (by ID). \n" +
-                "[3] Delete serie (by ID). \n" +
-                "[4] Exit. \n");
+                "Por favor, introduzca su elección: \n\n" +
+                "[0] Añadir nueva serie. \n" +
+                "[1] Mostrar lista de series. \n" +
+                "[2] Actualizar la informacion de una serie(por ID). \n" +
+                "[3] Borrar serie (por ID). \n" +
+                "[4] Salir. \n");
             Console.WriteLine("-------------------------------");
 
             var entry = Console.ReadLine();
@@ -47,13 +47,13 @@ namespace CBD_PROYECTO
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(20, 0);
-            Console.WriteLine("Actors menu");
+            Console.WriteLine("Menú de actores");
             Console.ResetColor();
             Console.WriteLine();
             Console.Write(
-                "Please enter your choice: \n\n" +
-                "[0] Add new Actor. \n" +
-                "[4] Exit. \n");
+                "Por favor, introduzca su elección: \n\n" +
+                "[0] Añadir nuevo actor. \n" +
+                "[4] Salir. \n");
             Console.WriteLine("-------------------------------");
 
             var entry = Console.ReadLine();
@@ -93,8 +93,8 @@ namespace CBD_PROYECTO
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n------------------------------------------\n");
             Console.ResetColor();
-            Console.WriteLine("Operation completed! \n" +
-                "Press return key to continue...");
+            Console.WriteLine("Operación completada! \n" +
+                "Presione la tecla de retorno para continuar...");
             Console.Read();
         }
 
@@ -104,8 +104,8 @@ namespace CBD_PROYECTO
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n------------------------------------------\n");
             Console.ResetColor();
-            Console.WriteLine("Operation completed! \n" +
-                "Actor succefully addded");
+            Console.WriteLine("Operación completada! \n" +
+                "El actor se añadió con éxito");
             Console.Read();
         }
 
@@ -126,15 +126,35 @@ namespace CBD_PROYECTO
             serie.descripcion = Console.ReadLine();
 
             Console.Write("Introduzca su valoración: ");
-            serie.valoracion = Double.Parse(Console.ReadLine());
 
-            Console.Write("Introduzca se fecha de lanzamiento, según el patrón dd-mm-yyyy: ");
-            serie.fechaLanzamiento = DateTime.ParseExact(Console.ReadLine(),
-                                            "dd-MM-yyyy",
-                                            CultureInfo.InvariantCulture);
+            double d;
+            while (!double.TryParse(Console.ReadLine(), out d))
+            {
+                Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+            }
+
+         
+
+
+            Console.Write("Introduzca fecha de lanzamiento: ");
+            serie.fechaLanzamiento = Console.ReadLine();
+            DateTime dt;
+            while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+            {
+                Console.WriteLine("Invalid date, please retry");
+                serie.fechaLanzamiento = Console.ReadLine();
+            }
+
 
             Console.Write("Introduzca el número de temporadas: ");
-            serie.temporada = Convert.ToInt32(Console.ReadLine());
+            int num;
+
+            while (!Int32.TryParse(serie.temporada,null,null, System.Globalization.DateTimeStyles.None, out num)){
+                
+                Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+               serie.temporada = Convert.ToInt32(Console.ReadLine());
+
+            }
 
             Console.Write("Introduzca los actores de la serie: ");
             serie.actores=añadirActor();
@@ -164,10 +184,25 @@ namespace CBD_PROYECTO
                         actor.apellidos = Console.ReadLine();
 
                         Console.Write("Introduzca su valoración: ");
-                        actor.valoracion = Double.Parse(Console.ReadLine());
+                        double num;
+
+                        while (!double.TryParse(Console.ReadLine(), out num))
+                        {
+                            Console.Write("El valor ingresado no es válido.\nIngrese un número decimal: ");
+                        }
+
+
+                    //    actor.valoracion = Double.Parse(Console.ReadLine());
 
                         Console.Write("Introduzca la edad: ");
-                        actor.edad = Convert.ToInt32(Console.ReadLine());
+                        int numero;
+
+                        while (!Int32.TryParse(Console.ReadLine(), out numero))
+                        {
+                            Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                        }
+
+                       // actor.edad = Convert.ToInt32(Console.ReadLine());
 
                         Console.Write("Introduzca el lugar de nacimiento: ");
                         actor.lugarNacimiento = Console.ReadLine();
@@ -197,13 +232,13 @@ namespace CBD_PROYECTO
         /// <param name="seriesList"></param>
         public static void ShowSerieList(List<Serie> seriesList)
         {
-            ShowHeader("Series list");
+            ShowHeader("Lista de series");
 
-            var table = new EstiloConsola("Id", "Titulo", "Valoracion", "Descripcion","Lanzamiento");
+            var table = new EstiloConsola("Id", "Titulo", "Descripcion", "Valoracion","Temporadas", "Lanzamiento");
 
             foreach (var serie in seriesList)
             {
-                table.AddRow(serie._id, serie.titulo, serie.valoracion, serie.descripcion, serie.fechaLanzamiento);
+                table.AddRow(serie._id, serie.titulo,  serie.descripcion, serie.valoracion, serie.temporada,serie.fechaLanzamiento);
             }
             table.Print();
 
@@ -216,10 +251,10 @@ namespace CBD_PROYECTO
         /// <returns></returns>
         public static string ShowUpdateSerie()
         {
-            ShowHeader("Update Serie");
+            ShowHeader("Actualizar serie");
 
             
-            Console.WriteLine("Enter serie Id: ");
+            Console.WriteLine("Introduzca serie Id: ");
 
             return Console.ReadLine();
 
@@ -231,9 +266,9 @@ namespace CBD_PROYECTO
         /// <returns></returns>
         public static string ShowDeleteSerie()
         {
-            ShowHeader("Delete Serie");
+            ShowHeader("Borrar serie");
 
-            Console.Write("Enter serie ID: ");
+            Console.Write("Introduzca serie ID: ");
 
             return Console.ReadLine();
         }
