@@ -25,15 +25,17 @@ namespace CBD_PROYECTO
                 "Por favor, introduzca su elección: \n\n" +
                 "[0] Añadir nueva serie. \n" +
                 "[1] Mostrar lista de series. \n" +
-                "[2] Actualizar la informacion de una serie(por ID). \n" +
-                "[3] Borrar serie (por ID). \n" +
-                "[4] Salir. \n");
+                "[2] Buscar serie. \n" +
+                "[3] Mostrar las mejores series. \n" +
+                "[4] Actualizar la informacion de una serie(por ID). \n" +
+                "[5] Borrar serie (por ID). \n" +
+                "[6] Salir. \n");
             Console.WriteLine("-------------------------------");
 
             var entry = Console.ReadLine();
             if (!int.TryParse(entry, out choice))
             {
-                choice = 5;
+                choice = 7;
             }
             return choice;
 
@@ -254,11 +256,51 @@ namespace CBD_PROYECTO
             ShowContinueMessage();
         }
 
-        /// <summary>
-        /// Display 'Update serie' dialog
-        /// </summary>
-        /// <returns></returns>
-        public static string ShowUpdateSerie()
+        public static void ShowSerieListMejores(List<Serie> seriesList)
+        {
+            ShowHeader("Lista de las mejores series");
+
+            var table = new EstiloConsola("Id", "Titulo", "Descripcion", "Valoracion", "Temporadas", "Lanzamiento");
+
+            foreach (var serie in seriesList)
+            {
+                table.AddRow(serie._id, serie.titulo, serie.descripcion, serie.valoracion, serie.temporada, serie.fechaLanzamiento);
+            }
+            table.Print();
+
+            ShowContinueMessage();
+        }
+        public static void ShowSerieByName(Serie serie)
+        {
+            ShowHeader("SERIE");
+
+            var table = new EstiloConsola("Id", "Titulo", "Descripcion", "Valoracion", "Temporadas", "Lanzamiento");
+         
+       
+            table.AddRow(serie._id, serie.titulo, serie.descripcion, serie.valoracion, serie.temporada, serie.fechaLanzamiento);
+            
+            table.Print();
+
+            ShowContinueMessage();
+
+        }
+        public static void ShowSerieByName1()
+        {
+            ShowHeader("Buscar serie");
+
+            Console.Write("Introduzca nombre: ");
+
+          
+        }
+
+    
+
+
+/// <summary>
+/// Display 'Update serie' dialog
+/// </summary>
+/// <returns></returns>
+public static string ShowUpdateSerie()
         {
             ShowHeader("Actualizar serie");
 

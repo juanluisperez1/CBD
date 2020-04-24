@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 
@@ -14,7 +15,9 @@ namespace CBD_PROYECTO
         static void Main(string[] args)
         {
             // Establecemos conexion con la base de datos
-            var mongoDB = new MongoConnect("Entregaa");
+            var mongoDB = new MongoConnect("Entrega");
+
+
 
             const string collectionName = "Series";
 
@@ -43,7 +46,46 @@ namespace CBD_PROYECTO
 
                         }
                         break;
-                    case 2: // Update serie info (by ID)
+                    case 2: // Show filter name
+                        {
+
+                            Dialogo.ShowSerieByName1();
+                            
+                            
+                            String ser= Console.ReadLine();
+                            
+
+
+                          Serie s=  mongoDB.filterByName<Serie>(collectionName, ser);
+                            while (s == null)
+                            {
+                                Console.Write("No tenemos esta serie, introduzca otra: ");
+                                String ser2 = Console.ReadLine();
+                                Serie s2 = mongoDB.filterByName<Serie>(collectionName, ser2);
+                            
+                            if(s2!=null)
+                                Dialogo.ShowSerieByName(s2);
+
+                            }
+
+                            Dialogo.ShowSerieByName(s);
+
+                        }
+                        break;
+
+
+                    case 3: // Show serie list mejores
+                        {
+                            var seriesList = mongoDB.listadoBestBD<Serie>(collectionName);
+                           
+                            
+                            Dialogo.ShowSerieListMejores(seriesList);
+
+                        }
+                        break;
+
+
+                    case 4: // Update serie info (by ID)
                         {
                             var serieId = Dialogo.ShowUpdateSerie();
                             ObjectId serieIdGuid;
@@ -125,7 +167,7 @@ namespace CBD_PROYECTO
                             Dialogo.ShowContinueMessage();
                         }
                         break;
-                    case 3: // Delete serie (by ID)
+                    case 5: // Delete serie (by ID)
                         {
                             var serieId = Dialogo.ShowDeleteSerie();
 
@@ -147,7 +189,7 @@ namespace CBD_PROYECTO
                         break;
                 }
 
-            } while (menuChoice != 4);
+            } while (menuChoice != 6);
 
 
         }
