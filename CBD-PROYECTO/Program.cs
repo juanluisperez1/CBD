@@ -119,7 +119,7 @@ namespace CBD_PROYECTO
                                 }
 
                                 Console.WriteLine("Introduzca una nueva valoración (déjalo vacío si no quieres cambios)");
-                                var valoracion = Console.ReadLine();
+                                 var valoracion = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
                                 {
@@ -134,26 +134,29 @@ namespace CBD_PROYECTO
                                     
                                 }
 
-                                Console.WriteLine("Introduzca una nueva fecha de lanzamiento, según el patrón dd-mm-yyyy: (déjalo vacío si no quieres cambios)");
-                                serie.fechaLanzamiento = Console.ReadLine();
-                                if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion)){
-                                    DateTime dt;
-                                while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+                                Console.WriteLine("Introduzca una nueva fecha de lanzamiento, según el patrón dd/mm/yyyy: (déjalo vacío si no quieres cambios)");
+                                 var fechaLanzamiento = Console.ReadLine();
+                                if (!string.IsNullOrEmpty(fechaLanzamiento) && !string.IsNullOrWhiteSpace(fechaLanzamiento)){
+                                 
+                                DateTime dt;
+                                while (!DateTime.TryParseExact(fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
                                 {
                                     Console.WriteLine("Fecha inválida, por favor inténtalo de nuevo, el formato es dd/MM/yyyy");
-                                    serie.fechaLanzamiento = Console.ReadLine();
                                 }
+                                       serie.fechaLanzamiento = fechaLanzamiento;
+
                                 }
 
                                 Console.WriteLine("Introduzca el número de temporadas: (déjalo vacío si no quieres cambios)");
-                                 var temporada = Console.ReadLine();
+                                var temporada = Console.ReadLine();
                                 int numero;
                                 if (!string.IsNullOrEmpty(temporada) && !string.IsNullOrWhiteSpace(temporada))
                                 {
-                                    while (!Int32.TryParse(Console.ReadLine(), out numero))
+                                    while (!Int32.TryParse(temporada, out numero))
                                     {
                                         Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
                                     }
+                                    serie.temporada = numero;
                                 }
 
                                 Console.WriteLine("Introduzca los actores de la serie: (déjalo vacío si no quieres cambios), si quiere introducir presione una tecla y enter");
