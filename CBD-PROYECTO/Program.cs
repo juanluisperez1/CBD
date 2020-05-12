@@ -15,7 +15,7 @@ namespace CBD_PROYECTO
         static void Main(string[] args)
         {
             // Establecemos conexion con la base de datos
-            var mongoDB = new MongoConnect("Entrega");
+            var mongoDB = new MongoConnect("CBD-GRUPO32-APP");
 
 
 
@@ -96,13 +96,13 @@ namespace CBD_PROYECTO
                             {
                                 var serie = mongoDB.mostrarElementoPorId<Serie>(collectionName, serieIdGuid);
                                 Console.Write($"\n" +
-                                    $"Current info\n" +
+                                    $"Información Actual\n" +
                                     $"Título: {serie.titulo} \n" +
                                     $"Descripción: {serie.descripcion}");
 
                                 Console.WriteLine("\n------------------------------------------\n");
 
-                                Console.WriteLine("Introduzca un nuevo título (leave empty if no changes");
+                                Console.WriteLine("Introduzca un nuevo título (déjalo vacío si no quieres cambios)");
                                 var titulo = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(titulo) && !string.IsNullOrWhiteSpace(titulo))
@@ -110,7 +110,7 @@ namespace CBD_PROYECTO
                                     serie.titulo = titulo;
                                 }
 
-                                Console.WriteLine("Introduzca una nueva descripcion (leave empty if no changes");
+                                Console.WriteLine("Introduzca una nueva descripción (déjalo vacío si no quieres cambios)");
                                 var description = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(description) && !string.IsNullOrWhiteSpace(description))
@@ -118,34 +118,44 @@ namespace CBD_PROYECTO
                                     serie.descripcion = description;
                                 }
 
-                                Console.WriteLine("Introduzca una nueva valoracion (leave empty if no changes");
+                                Console.WriteLine("Introduzca una nueva valoración (déjalo vacío si no quieres cambios)");
                                 var valoracion = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
                                 {
+                                    double d;
+                                    while (!double.TryParse(Console.ReadLine(), out d))
+                                    {
+                                        Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                                    }
 
-                                    serie.valoracion = Double.Parse(valoracion); 
+                                    serie.valoracion = d;
+
+                                    
                                 }
 
-                                Console.WriteLine("Introduzca una nueva fecha de Lanzamiento, según el patrón dd-mm-yyyy: (leave empty if no changes");
+                                Console.WriteLine("Introduzca una nueva fecha de lanzamiento, según el patrón dd-mm-yyyy: (déjalo vacío si no quieres cambios)");
                                 serie.fechaLanzamiento = Console.ReadLine();
-                                DateTime dt;
+                                if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion)){
+                                    DateTime dt;
                                 while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
                                 {
-                                    Console.WriteLine("Invalid date, please retry");
+                                    Console.WriteLine("Fecha inválida, por favor inténtalo de nuevo, el formato es dd/MM/yyyy");
                                     serie.fechaLanzamiento = Console.ReadLine();
                                 }
-
+                                }
 
                                 Console.WriteLine("Introduzca el número de temporadas: (leave empty if no changes");
                                 int numero;
-
-                                while (!Int32.TryParse(Console.ReadLine(), out numero))
+                                if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
                                 {
-                                    Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                                    while (!Int32.TryParse(Console.ReadLine(), out numero))
+                                    {
+                                        Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                                    }
                                 }
 
-                                Console.WriteLine("Introduzca los actores de la serie: (leave empty if no changes), si quiere introducir presine una tecla y enter");
+                                Console.WriteLine("Introduzca los actores de la serie: (déjalo vacío si no quieres cambios), si quiere introducir presione una tecla y enter");
                                 var actor = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(actor) && !string.IsNullOrWhiteSpace(actor))
@@ -161,13 +171,13 @@ namespace CBD_PROYECTO
                             }
                             else
                             {
-                                Console.WriteLine($"Exception: '{serieId}' is not a valid Guid!");
+                                Console.WriteLine($"Excepción: '{serieId}' no es un ID de serie válido!");
                             }
 
                             Dialogo.ShowContinueMessage();
                         }
                         break;
-                    case 5: // Delete serie (by ID)
+                    case 5: // Elminar serie (by ID)
                         {
                             var serieId = Dialogo.ShowDeleteSerie();
 
@@ -180,7 +190,7 @@ namespace CBD_PROYECTO
                             }
                             else
                             {
-                                Console.WriteLine($"Exception: '{serieId}' is not a valid Guid!");
+                                Console.WriteLine($"Excepción: '{serieId}' no es un ID de serie válido!");
                             }
 
 

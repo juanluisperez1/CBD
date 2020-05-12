@@ -12,10 +12,14 @@ namespace CBD_PROYECTO
     {
         public class MongoConnect
         {
+            // variable que almacena el servidor de Mongodb
             private IMongoDatabase db;
 
             public MongoConnect(String database)
-            {
+            {   // como establecer conexion con un servidor en remoto ejemplo
+                // var cliente = new MongoClient("mongodb+srv://prueba:phy1o6JXWuttoEhN@cluster0-6dje0.mongodb.net/?replicaSet=rs0");
+                
+                //establecer conexion con el servidor de base de datos en local
                 var cliente = new MongoClient();
                 db = cliente.GetDatabase(database);
 
@@ -27,6 +31,8 @@ namespace CBD_PROYECTO
                 var collection = db.GetCollection<T>(coleccion);
                 collection.InsertOne(elemento);
             }
+
+            
 
             public List<T> listadoBD<T>(String coleccion)
             {

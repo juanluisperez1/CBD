@@ -7,10 +7,7 @@ namespace CBD_PROYECTO
 {
     class Dialogo
     {
-        /// <summary>
-        /// Display the main menu
-        /// </summary>
-        /// <returns>Menu Selection</returns>
+       
         public static int ShowMainMenu()
         {
             int choice;
@@ -71,10 +68,7 @@ namespace CBD_PROYECTO
 
         
 
-        /// <summary>
-        /// Show current page title
-        /// </summary>
-        /// <param name="title"></param>
+      
         private static void ShowHeader(string title)
         {
             Console.Clear();
@@ -87,9 +81,6 @@ namespace CBD_PROYECTO
         }
 
 
-        /// <summary>
-        /// Display continue message
-        /// </summary>
         public static void ShowContinueMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -111,10 +102,7 @@ namespace CBD_PROYECTO
             Console.Read();
         }
 
-        /// <summary>
-        /// display 'add new serie' dialog
-        /// </summary>
-        /// <returns></returns>
+       
         public static Serie ShowAddNewSerie()
         {
             ShowHeader("Añadir nueva serie");
@@ -145,16 +133,13 @@ namespace CBD_PROYECTO
             DateTime dt;
             while (!DateTime.TryParseExact(serie.fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
             {
-                Console.WriteLine("Invalid date, please retry, the format is dd/MM/yyyy");
+                Console.WriteLine("Fecha inválida, por favor inténtalo de nuevo, el formato es dd/MM/yyyy");
                 serie.fechaLanzamiento = Console.ReadLine();
             }
 
 
             Console.Write("Introduzca el número de temporadas: ");
-            // int num;
-
-            //  while (!Int32.TryParse(serie.temporada,null,null, System.Globalization.DateTimeStyles.None, out num)){
-
+            
 
             int num;
 
@@ -203,7 +188,6 @@ namespace CBD_PROYECTO
                         }
 
 
-                    //    actor.valoracion = Double.Parse(Console.ReadLine());
 
                         Console.Write("Introduzca la edad: ");
                         int numero;
@@ -237,10 +221,7 @@ namespace CBD_PROYECTO
                    
 
 
-        /// <summary>
-        /// Display 'show serie list' dialog
-        /// </summary>
-        /// <param name="seriesList"></param>
+       
         public static void ShowSerieList(List<Serie> seriesList)
         {
             ShowHeader("Lista de series");
@@ -296,25 +277,19 @@ namespace CBD_PROYECTO
     
 
 
-/// <summary>
-/// Display 'Update serie' dialog
-/// </summary>
-/// <returns></returns>
+
 public static string ShowUpdateSerie()
         {
             ShowHeader("Actualizar serie");
 
             
-            Console.WriteLine("Introduzca serie Id: ");
+            Console.WriteLine("Introduzca serie ID: ");
 
             return Console.ReadLine();
 
         }
 
-        /// <summary>
-        /// Display 'Delete serie' dialog
-        /// </summary>
-        /// <returns></returns>
+        
         public static string ShowDeleteSerie()
         {
             ShowHeader("Borrar serie");
