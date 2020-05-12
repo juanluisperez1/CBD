@@ -21,7 +21,7 @@ namespace CBD_PROYECTO
 
             const string collectionName = "Series";
 
-            Console.Title = "Aplicación de consola de Mongo con C#, espermos que os guste...";
+            Console.Title = "Aplicación de consola de Mongo con C#, esperemos que os guste...";
 
             int menuChoice;
 
@@ -50,26 +50,26 @@ namespace CBD_PROYECTO
                         {
 
                             Dialogo.ShowSerieByName1();
-                            
-                            
-                            String ser= Console.ReadLine();
-                            
-
-
-                          Serie s=  mongoDB.filterByName<Serie>(collectionName, ser);
-                            while (s == null)
+                            String ser = Console.ReadLine();
+                            Serie s = mongoDB.filterByName<Serie>(collectionName, ser);
+                            if (s != null)
                             {
-                                Console.Write("No tenemos esta serie, introduzca otra: ");
-                                String ser2 = Console.ReadLine();
-                                Serie s2 = mongoDB.filterByName<Serie>(collectionName, ser2);
-                            
-                            if(s2!=null)
-                                Dialogo.ShowSerieByName(s2);
-
+                                Dialogo.ShowSerieByName(s);
                             }
+                            while (ser == string.Empty || s == null){
+                                Console.Write("No tenemos esta serie, introduzca otra: ");
+                                     ser = Console.ReadLine();
+                                     s = mongoDB.filterByName<Serie>(collectionName, ser);
 
-                            Dialogo.ShowSerieByName(s);
 
+                                if (ser != string.Empty && s!=null){
+                                 
+                                    s = mongoDB.filterByName<Serie>(collectionName, ser);
+                                    Dialogo.ShowSerieByName(s);
+
+
+                                }
+                            }
                         }
                         break;
 

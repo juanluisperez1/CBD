@@ -173,11 +173,29 @@ namespace CBD_PROYECTO
                     case 0:
                         var actor = new Actor();
 
-                        Console.Write("Introduzca el nombre del actor: ");
-                        actor.nombre = Console.ReadLine();
 
-                        Console.Write("Introduzca los apellidos: ");
-                        actor.apellidos = Console.ReadLine();
+                        Console.Write("Introduzca el nombre del actor: ");
+                        var nombre = Console.ReadLine();
+
+                        while(string.IsNullOrEmpty(nombre) && string.IsNullOrWhiteSpace(nombre))
+                        {
+                            Console.Write("Introduce un nombre valido: ");
+                            nombre = Console.ReadLine();
+                            actor.nombre = nombre;
+                        }
+                        actor.nombre = nombre;
+
+                        Console.Write("Introduzca los apellidos del actor: ");
+                        var apellidos = Console.ReadLine();
+
+                        while (string.IsNullOrEmpty(apellidos) && string.IsNullOrWhiteSpace(apellidos))
+                        {
+                            Console.Write("Introduce unos apellidos validos: ");
+                            apellidos = Console.ReadLine();
+                            actor.apellidos = apellidos;
+                        }
+                        actor.apellidos = apellidos;
+
 
                         Console.Write("Introduzca su valoración: ");
                         double num;
@@ -186,7 +204,7 @@ namespace CBD_PROYECTO
                         {
                             Console.Write("El valor ingresado no es válido.\nIngrese un número decimal: ");
                         }
-
+                        actor.valoracion = num;
 
 
                         Console.Write("Introduzca la edad: ");
@@ -199,8 +217,20 @@ namespace CBD_PROYECTO
 
                         actor.edad = numero;
 
+
+
+
                         Console.Write("Introduzca el lugar de nacimiento: ");
-                        actor.lugarNacimiento = Console.ReadLine();
+                        var lugar = Console.ReadLine();
+
+                        while (string.IsNullOrEmpty(lugar) && string.IsNullOrWhiteSpace(lugar))
+                        {
+                            Console.Write("Introduce un lugar valido: ");
+                            lugar = Console.ReadLine();
+                            actor.lugarNacimiento = lugar;
+                        }
+                        actor.lugarNacimiento = lugar;
+
 
                         actores.Add(actor);
 
