@@ -159,7 +159,7 @@ namespace CBD_PROYECTO
                                     serie.temporada = numero;
                                 }
 
-                                Console.WriteLine("Introduzca los actores de la serie: (déjalo vacío si no quieres cambios), si quiere introducir presione una tecla y enter");
+                                Console.WriteLine("Introduzca los actores de la serie: (déjalo vacío si no quieres cambios),\n si quiere introducir presione una tecla y enter");
                                 var actor = Console.ReadLine();
 
                                 if (!string.IsNullOrEmpty(actor) && !string.IsNullOrWhiteSpace(actor))
