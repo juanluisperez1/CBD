@@ -145,9 +145,10 @@ namespace CBD_PROYECTO
                                 }
                                 }
 
-                                Console.WriteLine("Introduzca el número de temporadas: (leave empty if no changes");
+                                Console.WriteLine("Introduzca el número de temporadas: (déjalo vacío si no quieres cambios)");
+                                 var temporada = Console.ReadLine();
                                 int numero;
-                                if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
+                                if (!string.IsNullOrEmpty(temporada) && !string.IsNullOrWhiteSpace(temporada))
                                 {
                                     while (!Int32.TryParse(Console.ReadLine(), out numero))
                                     {
