@@ -110,7 +110,15 @@ namespace CBD_PROYECTO
             var serie = new Serie();
 
             Console.Write("Introduzca el título de la serie: ");
-            serie.titulo = Console.ReadLine();
+            var titulo = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(titulo) && string.IsNullOrWhiteSpace(titulo))
+            {
+                Console.Write("Introduce un titulo (Este campo es obligatorio): ");
+                titulo = Console.ReadLine();
+                serie.titulo = titulo;
+            }
+            serie.titulo = titulo;
 
             Console.Write("Introduzca una descripcion: ");
             serie.descripcion = Console.ReadLine();
@@ -179,7 +187,7 @@ namespace CBD_PROYECTO
 
                         while(string.IsNullOrEmpty(nombre) && string.IsNullOrWhiteSpace(nombre))
                         {
-                            Console.Write("Introduce un nombre valido: ");
+                            Console.Write("Introduce un nombre (Este campo es obligatorio): ");
                             nombre = Console.ReadLine();
                             actor.nombre = nombre;
                         }
@@ -190,7 +198,7 @@ namespace CBD_PROYECTO
 
                         while (string.IsNullOrEmpty(apellidos) && string.IsNullOrWhiteSpace(apellidos))
                         {
-                            Console.Write("Introduce unos apellidos validos: ");
+                            Console.Write("Introduce unos apellidos (Este campo es obligatorio): ");
                             apellidos = Console.ReadLine();
                             actor.apellidos = apellidos;
                         }
