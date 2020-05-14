@@ -124,9 +124,11 @@ namespace CBD_PROYECTO
                                 if (!string.IsNullOrEmpty(valoracion) && !string.IsNullOrWhiteSpace(valoracion))
                                 {
                                     double d;
-                                    while (!double.TryParse(Console.ReadLine(), out d))
+                                    while (!double.TryParse(valoracion, out d))
                                     {
                                         Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                                        valoracion = Console.ReadLine();
+                                        
                                     }
 
                                     serie.valoracion = d;
@@ -137,13 +139,18 @@ namespace CBD_PROYECTO
                                 Console.WriteLine("Introduzca una nueva fecha de lanzamiento, según el patrón dd/mm/yyyy: (déjalo vacío si no quieres cambios)");
                                  var fechaLanzamiento = Console.ReadLine();
                                 if (!string.IsNullOrEmpty(fechaLanzamiento) && !string.IsNullOrWhiteSpace(fechaLanzamiento)){
-                                 
+                                   
+
                                 DateTime dt;
-                                while (!DateTime.TryParseExact(fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt))
+                                    DateTime aux = new DateTime(0001,01,01,0,0,0);
+                                while (!DateTime.TryParseExact(fechaLanzamiento, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dt) && DateTime.Compare(aux,dt)==0)
                                 {
                                     Console.WriteLine("Fecha inválida, por favor inténtalo de nuevo, el formato es dd/MM/yyyy");
-                                }
-                                       serie.fechaLanzamiento = fechaLanzamiento;
+                                        fechaLanzamiento = Console.ReadLine();
+
+
+                                    }
+                                    serie.fechaLanzamiento = fechaLanzamiento;
 
                                 }
 
@@ -152,9 +159,11 @@ namespace CBD_PROYECTO
                                 int numero;
                                 if (!string.IsNullOrEmpty(temporada) && !string.IsNullOrWhiteSpace(temporada))
                                 {
-                                    while (!Int32.TryParse(temporada, out numero))
+                                    while (!Int32.TryParse(temporada, out numero) && numero==0)
                                     {
                                         Console.Write("El valor ingresado no es válido.\nIngrese un número entero: ");
+                                        temporada = Console.ReadLine();
+
                                     }
                                     serie.temporada = numero;
                                 }
