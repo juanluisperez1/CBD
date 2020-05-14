@@ -10,3 +10,7 @@ You must have installed locally:
 1.- Open .sln file with Visual Studio
 
 2.- Execute App
+
+## FUTHER INFROMATION
+
+Take a look on information branch, all the documentation about the project.
